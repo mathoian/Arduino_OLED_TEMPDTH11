@@ -32,7 +32,7 @@ SDA ANALOG A4
 // **- Mapeamento de Hardware **-
 #define    dht_pin    7   //pin dth11 
 #define VISOR 32
-materiai
+
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);   // para o OLED
 dht   my_dht;                           //para o DHT11
@@ -88,43 +88,24 @@ void setup(){
 } //end setup
 
 // **- Loop Infinito **-
-void loop() 
-{
+void loop(){
    
-
-   my_dht.read11(dht_pin);
+   my_dht.read11(dht_pin); //lendo o pin do sensor DTH11 
 
    temperatura = my_dht.temperature;
    umidade     = my_dht.humidity;
-
-
-  printSerial();
-
-
-   if(control) _temp(); //se control é verdadeiro, mostra temperatura
-   else        _umid(); //senão, mostra a umidade relativa do ar
    
-    display.clearDisplay(); //limpa o display OLED
+   printSerial();
+   
+   _umid(); //senão, mostra a umidade relativa do ar
+   
+   display.clearDisplay(); //limpa o display OLED
   
-} //end loop
-
+}
 
 
 // **- Funções **-
-/*void _temp(){
-   display.setTextSize(2);
-   display.setTextColor(WHITE);
-   display.setCursor(8,0);
-   display.print("Temperatura");
-   display.setTextSize(1);
-   display.setCursor(48,12);
-   display.setTextColor(WHITE);
-   display.print(temperatura);
-   display.print(" C");
-   display.display();
-  
-} //end _temp
-*/
+
 
 void _umid(){
   
@@ -138,8 +119,7 @@ void _umid(){
    display.setTextColor(WHITE);
    display.print(temperatura);
    display.print(" C");
-   display.display();
-   
+      
   //  ** Feat umidade **
    display.setTextSize(1);
    display.setTextColor(WHITE);
